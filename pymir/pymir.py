@@ -14,7 +14,7 @@ import subprocess as sp
 class mirstr(str):
     """Class to run a miriad task as a method call. Uses str as a base
     to make string printing easier. 
-
+    
     TODO: make str addition i.e. a + b return a mirstr instance.
     """
     def __init__(self, *args, **kwargs):
