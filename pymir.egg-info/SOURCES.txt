@@ -1,0 +1,8 @@
+README.md
+setup.py
+pymir/__init__.py
+pymir/pymir.py
+pymir.egg-info/PKG-INFO
+pymir.egg-info/SOURCES.txt
+pymir.egg-info/dependency_links.txt
+pymir.egg-info/top_level.txt
