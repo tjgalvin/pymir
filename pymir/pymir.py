@@ -28,6 +28,7 @@ class mirstr(str):
         to_print = self
         
         if self.p is not None:
+            to_print += '\n'
             to_print += self.p.stdout
             
         return to_print

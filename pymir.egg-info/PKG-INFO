@@ -8,7 +8,7 @@ Author-email: fake@fake.com
 License: MIT
 Description: # pymir
         
-        A simple class to help run miriad tasks.
+        A simple class to help run miriad tasks.  
         
         It makes no attempt to verify calling signatures of miriad tasks like other miriad packages (mirpy for instance). It also operates on the string invocation of miriad tasks. Operating this way does not clash with python keywords (`in` or `map` for example).
         
