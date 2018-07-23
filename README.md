@@ -23,7 +23,7 @@ There exists a small interface to expand an invocation string or attempt to over
 
 ```python
 invert_kwargs = {"imsize":"3,3,beam", "stokes":"i"}
-invert = mirstr(f"invert vis={uv} options=mfs,sdb,double,mosaic offset=3:32:22.0,-27:48:37 stokes=i imsize=6,6,beam map={uv}.map beam={uv}.beam", over=invert_kwargs).run()
+invert = mirstr(f"invert vis={uv} options=mfs,sdb,double,mosaic offset=3:32:22.0,-27:48:37 imsize=6,6,beam map={uv}.map beam={uv}.beam", over=invert_kwargs).run()
 ```
 
 will update the value of the `imsize` key to `3,3,beam` and add the `stokes` keyword. 
