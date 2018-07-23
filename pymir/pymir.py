@@ -14,9 +14,26 @@ import subprocess as sp
 class mirstr(str):
     """Class to run a miriad task as a method call. Uses str as a base
     to make string printing easier. 
-    
-    TODO: make str addition i.e. a + b return a mirstr instance.
     """
+    def __new__(cls, value, *args, over=None, **kwargs):
+        """The new constructor for an immutable object
+
+        over {dict} -- Replace keys and values with items 
+                       specified in over
+        """
+        if over is not None:
+            for k in over.keys():
+                if f"{k}=" not in value:
+                    value += f" {k}={over[k]}"
+                elif f"{k}=" in value:
+                    # Slice out the existing option and replace it
+                    a1 = value.index(f"{k}=")
+                    b1 = value[a1:].index(" ") + a1
+                    value = value[:a1] + f"{k}={over[k]} " + value[b1:]
+
+        obj = str.__new__(cls,value)
+        return obj
+
     def __init__(self, *args, **kwargs):
         """Initialise the instance. I think for immutable types there
         is the __new__() method that should be used. To be looked at. 
@@ -71,3 +88,18 @@ class mirstr(str):
         except:
             raise AttributeError(name)
 
+if __name__ == '__main__':
+    a = mirstr(f"invert vis=test options=op1,op2,op3 imsize=5,5,beam robust=0")
+    print(type(a))
+    print(a)
+    print(a == 'invert vis=test options=mfs,double,sdb  imsize=2,2,beam')
+
+    a = mirstr(f"invert vis=test options=op1,op2,op3", 
+                over={"imsize":"2,2,beam", "options":"mfs,double,sdb"})
+    print(type(a))
+    print(a)
+
+    print(a == 'invert vis=test options=mfs,double,sdb  imsize=2,2,beam')
+
+    pbplot = mirstr("pbplot freq=2.1 bw=2.048 device=/xs", over={'telescop':'ATCA'}).run()
+    print(pbplot)
