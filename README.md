@@ -13,7 +13,7 @@ It can be installed using pip following:
 
 Assuming a variable called `uv` whose value is the path to a miriad visibility file, then that `uv`-file can be imaged with:
 
-`invert = mirstr(f"invert vis={uv} options=mfs,sdb,double,mosaic offset=3:32:22.0,-27:48:37 stokes=i imsize=6,6,beam map={self.uv}.map beam={self.uv}.beam").run()`
+`invert = mirstr(f"invert vis={uv} options=mfs,sdb,double,mosaic offset=3:32:22.0,-27:48:37 stokes=i imsize=6,6,beam map={uv}.map beam={uv}.beam").run()`
 
 The trailing `.run()` will execute the task. Using `print()` on the variable `invert` will print not only the invocation string, but also the output of `invert`. 
 
